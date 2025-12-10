@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.2](https://github.com/elrafael/azure-elrafael/compare/v0.1.1...v0.1.2) (2025-12-10)
+
+
+### Features
+
+* release workflow on github ([088a682](https://github.com/elrafael/azure-elrafael/commit/088a6820606145d18a16b5968067099cca8fde9f))
+
 ### 0.1.1 (2025-12-10)
 
 
