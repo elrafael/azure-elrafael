@@ -1,14 +1,14 @@
-import { useEffect } from "react";
-import { useWeather } from "../hooks/useWeather";
+import { useEffect } from "react"
+import { useWeather } from "../hooks/useWeather"
 
 const cities = [
   { name: "Almada", coords: "38.680,-9.155" },
   { name: "Porto", coords: "41.1579,-8.6291" },
   { name: "São Paulo - BR", coords: "-23.5505,-46.6333" },
 ] as const
-export default function Weather() {
-  const { weather, loading, loadWeather } = useWeather();
-  const defaultCity = cities[0];
+export default function WeatherComponent() {
+  const { weather, loading, loadWeather } = useWeather()
+  const defaultCity = cities[0]
 
   useEffect(() => {
     loadWeather(defaultCity.coords, defaultCity.name)
