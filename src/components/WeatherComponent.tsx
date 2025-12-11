@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useWeather } from "../hooks/useWeather"
 import styles from "./WeatherComponent.module.css"
 import coldBG from "../assets/weather-background/cold.webp"
@@ -15,22 +15,37 @@ function getBackground(temp: number) {
   if (temp >= 23) return hotBG
   return mildBG
 }
+function preloadImage(url: string): Promise<void> {
+  return new Promise((resolve) => {
+    const img = new Image()
+    img.src = url
+    img.onload = () => resolve()
+    img.onerror = () => resolve()
+  })
+}
 export default function WeatherComponent() {
   const { weather, loading, loadWeather } = useWeather()
   const defaultCity = cities[0]
+
+  const [bgUrl, setBgUrl] = useState<string | null>(null)
 
   useEffect(() => {
     loadWeather(defaultCity.coords, defaultCity.name)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  useEffect(() => {
+    if (!weather) return
+    const newBg = getBackground(weather.temperature)
+
+    preloadImage(newBg).then(() => setBgUrl(newBg))
+  }, [weather])
+
   return (
     <div
       className={styles.wrapper}
       style={{
-        backgroundImage: `url(${
-          weather ? getBackground(weather.temperature) : ""
-        })`,
+        backgroundImage: bgUrl ? `url(${bgUrl})` : "none",
       }}
     >
       <div className={`container ${styles.panel}`}>
