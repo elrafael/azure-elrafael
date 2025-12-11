@@ -9,6 +9,7 @@ const cities = [
   { name: "Almada", coords: "38.680,-9.155" },
   { name: "Porto", coords: "41.1579,-8.6291" },
   { name: "São Paulo - BR", coords: "-23.5505,-46.6333" },
+  { name: "Rovaniemi - FIN", coords: "66.5039,25.7294" },
 ] as const
 function getBackground(temp: number) {
   if (temp <= 10) return coldBG
